@@ -1,0 +1,42 @@
+appId: com.yx.toolbox
+productName: ToolBox
+copyright: Copyright © 2025 YX Studio
+
+directories:
+  output: release
+  buildResources: build
+
+files:
+  - out/**
+  - package.json
+  - build/icon.ico
+  - '!**/*.map'
+  - '!**/*.ts'
+
+asar: true
+compression: normal
+
+win:
+  icon: build/icon.ico
+  target:
+    - target: portable
+      arch:
+        - x64
+    - target: nsis
+      arch:
+        - x64
+
+portable:
+  artifactName: ToolBox.exe
+  # 不自动提权：需要管理员权限时由 Windows 自己弹 UAC
+  requestExecutionLevel: user
+  unpackDirName: ToolBox
+
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: 一站式工具箱
+  artifactName: ToolBox_Setup.exe

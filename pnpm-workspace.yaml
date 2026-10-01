@@ -1,0 +1,10 @@
+# pnpm 11 的构建脚本白名单：只允许确实需要下载/编译二进制的依赖运行安装脚本
+allowBuilds:
+  # Electron 运行时的下载脚本（必须允许，否则 node_modules/electron/dist 是空的）
+  electron: true
+  # esbuild 的平台二进制校验
+  esbuild: true
+  # 本工程不使用 electron-winstaller 打包目标，明确禁止
+  electron-winstaller: false
+minimumReleaseAgeExclude:
+  - electron@44.5.1

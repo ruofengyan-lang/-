@@ -1,0 +1,317 @@
+# 一站式本地资源管理中心（ToolBox）
+
+Windows 本地运行的**个人数字资源中心**：把电脑上任意多个目录加进"资源库"，
+程序递归扫描 → 自动识别文件类型 → 建立本地 SQLite 索引 → 归入**虚拟分类**
+（电影 / 电视剧 / 动漫 / 音乐 / 小说 / 漫画 / 文档 / 图片 / 壁纸 / 安装包 / 压缩包 / 软件 / 其他），
+在右侧网格里用类型专属的卡片统一展示、搜索、播放、打开、收藏。
+
+> 1.0.1 版的核心变化：**物理文件夹不再是分类**。
+> 1.1.0 版（Phase 1）的核心变化：**取消固定右侧面板，改为动态详情抽屉；卡片海报化；首页内容化**（详见第 9 节）。
+> 文件夹只是"资源来源"，你看到的分类是程序按资源类型算出来的；同时保留"目录"浏览视图看真实结构。
+
+```
+物理文件系统                     资源中心
+G:\tu\YX的小屋\电影\a.mkv   ┐
+G:\tu\YX的小屋\音乐\b.flac  │   扫描器 → SQLite 索引 → 分类器 → 虚拟分类
+D:\下载\c.zip               │   → 电影: a.mkv   音乐: b.flac   压缩包: c.zip
+E:\小说\d.epub              ┘   → 左侧分类导航 + 右侧资源网格 + 搜索/收藏/最近
+```
+
+---
+
+## 1. 功能一览
+
+| 模块 | 说明 |
+| --- | --- |
+| 资源库管理 | 添加/移除多个本地目录，可单独启用禁用，单独或全部重新扫描 |
+| 递归扫描 | 不限层级（可设深度上限），跳过隐藏文件、系统目录与程序自身目录 |
+| 增量索引 | SQLite（Electron 自带 `node:sqlite`，无原生模块）；新增入库、修改更新、删除清理，未变化不重复处理 |
+| 自动分类 | 扩展名 + 文件名/目录启发式（`S01E01`→电视剧、动漫目录→动漫、壁纸目录→壁纸、绿色软件目录→软件…） |
+| 手动分类 | 右键"修改分类"，写入索引且**扫描永不覆盖** |
+| 类型化卡片 | 电影=首帧+分辨率+时长，音乐=专辑封面+艺术家+专辑+时长，小说/漫画=封面，图片=缩略图+分辨率，安装包=真实程序图标… |
+| 缩略图 | 视频首帧 / PDF 首页 / 专辑封面走 Windows Shell；图片用原生解码；EPUB·CBZ 读包内封面；其余回退真实文件图标。全部落盘缓存 |
+| 元数据 | 自研解析：ID3v2/ID3v1、FLAC、MP4/M4A、OGG、WAV 标签与内嵌封面；MP4/MKV/AVI 容器宽高与时长；JPEG/PNG/GIF/BMP/WEBP/TIFF 尺寸（只读文件头） |
+| 首页 | 资源总数、占用空间、各分类数量、最近添加、最近使用、收藏、资源库概览 |
+| 搜索 | 全库搜索（文件名/标题/所在目录），可按类型过滤 |
+| 收藏 / 最近 | 收藏写库；最近使用记录双击打开过的资源（按时间排序） |
+| 最近添加 | 按首次索引时间（30 天内），新文件一眼可见 |
+| 重复资源 | 先按文件大小初筛，再对同大小文件算 SHA-256（可设上限，默认 2 GB 以内） |
+| 目录浏览 | 保留真实文件夹结构，逐层进入，与虚拟分类并存 |
+| 扫描进度 | 后台扫描，UI 不卡；显示阶段、已扫描/总数、当前文件、各类型发现数量；可暂停/继续/取消 |
+| 双击行为 | 类型驱动：视频→默认播放器、音乐→默认播放器、小说/文档→默认程序、安装包→安装程序、图片→看图程序（壁纸另可"设为桌面壁纸"） |
+| 桌面壁纸 | 图片资源可设为 Windows 桌面壁纸（支持 webp 转码、中文路径） |
+| 工具箱背景 | 右键空白处更换背景图、遮罩强度 0~80%、填充方式，随程序目录便携保存 |
+
+## 2. 目录结构
+
+```
+G:\tu\YX的小屋\                     ← 资源库目录（你的资源放这里）
+├─ ToolBox.exe                      ← 绿色便携版（打包后部署到这里）
+├─ 使用说明.txt
+├─ 安装包\ 壁纸\ 电影\ 小说\ 压缩包\ 音乐\   ← 物理文件夹：只是资源来源，不再是分类
+├─ config\                          ← 设置（便携，跟着文件夹走）
+│   ├─ config.json
+│   └─ backgrounds\bg.jpg
+├─ data\                            ← 索引与缓存（可随时删除，会重新扫描）
+│   ├─ index.db                     ← SQLite 索引（WAL）
+│   ├─ thumbnails\                  ← 缩略图缓存（键 = 路径 + 修改时间）
+│   └─ workers\shell-thumbs.ps1     ← Windows Shell 缩略图 worker
+└─ ToolBox\                         ← 开发工程（源码）
+    ├─ package.json  electron.vite.config.ts  electron-builder.yml
+    ├─ tsconfig.json / tsconfig.node.json / tsconfig.web.json
+    ├─ pnpm-workspace.yaml  .gitignore  README.md
+    ├─ build\icon.ico · make-icon.py
+    ├─ scripts\deploy.mjs · db-report.cjs
+    ├─ docs\screenshots\
+    ├─ release\                     ← 打包产物
+    └─ src\
+        ├─ shared\    types.ts  resource-kinds.ts  format.ts      （三端共用）
+        ├─ main\      index.ts      窗口 / IPC / 冒烟自检 / 截图
+        │             db.ts         SQLite 索引（libraries/resources/kv）
+        │             library.ts    扫描引擎（递归、增量、进度、去重）
+        │             classifier.ts 资源分类器 + 卡片文案
+        │             mediainfo.ts  标签 / 容器 / 图片尺寸 / ZIP 解析
+        │             resources.ts  查询层（视图、搜索、收藏、分类覆盖）
+        │             thumbs.ts     缩略图调度与缓存
+        │             shell-worker.ts Windows Shell 缩略图批处理
+        │             icons.ts      真实文件图标（app.getFileIcon）
+        │             protocol.ts   toolbox-media:// 本地图片协议（白名单）
+        │             wallpaper.ts  设置 Windows 桌面壁纸
+        │             actions.ts    打开 / 定位 / 复制 / 重命名 / 删除
+        │             config.ts     配置读写、损坏恢复、路径解析
+        │             scan-paths.ts 系统目录与噪音文件过滤
+        ├─ preload\index.ts         contextBridge 暴露 window.toolbox
+        └─ renderer\
+            ├─ index.html
+            └─ src\ App.tsx  styles.css  utils.ts
+                    components\ Sidebar  TopBar  HomeView  ResourceGrid
+                                ResourceCard  InfoPane  LibrariesView
+                                ContextMenu  Modals  Toasts
+```
+
+## 3. 命令
+
+```powershell
+cd "G:\tu\YX的小屋\ToolBox"
+pnpm install          # 安装依赖
+pnpm setup:electron   # 下载 Electron 运行时（约 150MB，只需一次）
+pnpm dev              # 开发模式（热更新）
+pnpm typecheck        # 类型检查
+pnpm build            # 编译到 out\
+pnpm smoke            # 无界面自检：索引 / 分类 / 缩略图 / 元数据 / 界面 DOM
+pnpm smoke:wallpaper  # 额外真实测试"设置桌面壁纸"，结束自动恢复原壁纸
+pnpm pack:portable    # 绿色版 → release\ToolBox.exe
+pnpm pack:setup       # 安装版 → release\ToolBox_Setup.exe
+pnpm pack:all         # 两个一起打
+pnpm deploy:exe       # 把 exe 复制到 G:\tu\YX的小屋\ToolBox.exe 并写使用说明
+node scripts/db-report.cjs   # 打印索引统计（按类型统计缩略图/元数据情况）
+```
+
+> 注意两个坑：
+> 1. `pnpm pack` / `pnpm deploy` / `pnpm setup` 是 **pnpm 自己的内置命令**，不会执行本工程的脚本，
+>    请使用上面的 `pack:all` / `deploy:exe` / `setup:electron`。
+> 2. Electron 40+ 不再自带 postinstall 下载脚本，必须显式执行一次 `pnpm setup:electron`。
+>    国内网络慢或卡在 0 字节时：`$env:ELECTRON_MIRROR = 'https://npmmirror.com/mirrors/electron/'`。
+
+打包产物：
+
+| 产物 | 路径 |
+| --- | --- |
+| 绿色便携版 | `ToolBox\release\ToolBox.exe`，部署后为 `G:\tu\YX的小屋\ToolBox.exe` |
+| 安装版 | `ToolBox\release\ToolBox_Setup.exe` |
+
+## 4. 资源类型与双击行为
+
+| 虚拟分类 | 识别范围 | 双击行为 |
+| --- | --- | --- |
+| 电影 | 视频，无季集特征，或带年份/分辨率标记，或在 电影/Movies 目录 | 系统默认视频播放器 |
+| 电视剧 | 视频，`S01E01` / `第x集` / `Season` / 剧集目录 | 系统默认视频播放器 |
+| 动漫 | 视频，动漫/番剧目录，或字幕组命名（`[组名]` + 季集、BDRip 等） | 系统默认视频播放器 |
+| 音乐 | mp3/flac/wav/m4a/ogg/aac/wma/ape/opus… | 系统默认音乐播放器 |
+| 小说 | epub/mobi/azw3/fb2，或书名号 txt，或小说目录里的 txt/pdf | 默认阅读器 |
+| 漫画 | cbz/cbr/cb7/cbt，或漫画目录里的 pdf/zip | 默认关联程序 |
+| 文档 | pdf/doc(x)/xls(x)/ppt(x)/csv/md/rtf… | 默认关联程序 |
+| 图片 | jpg/png/webp/bmp/gif/tif/heic/avif/psd… | 系统看图程序 |
+| 壁纸 | 位于 壁纸/wallpaper/桌面 类目录的图片 | **设为 Windows 桌面壁纸** |
+| 安装包 | exe/msi/msix/appx（独立可执行文件） | 启动安装程序（先确认，需要时由 Windows 弹 UAC） |
+| 压缩包 | zip/7z/rar/tar/gz/iso… | 系统关联的解压软件 |
+| 软件 | 绿色软件目录里的 exe（同目录有 dll 或 ≥8 个文件）、apk/jar/deb/rpm | 直接运行 |
+| 其他 | 未识别的类型 | 默认关联程序 |
+
+分类结果永远可以**手动改**：右键 → 修改分类 → 选择分类（或"自动识别"恢复）。
+
+## 5. 资源库与扫描
+
+- **添加**：左侧「资源库」→ 添加目录（可多选）。移动硬盘、多个下载目录、多个影视目录都可以。
+- **优先级**：程序自己的 `config\`、`data\`、`ToolBox.exe`、`使用说明.txt` 永远不入索引。
+- **默认不扫**：`C:\Windows`、`Program Files`、`Program Files (x86)`、`ProgramData`、`AppData`、
+  `$Recycle.Bin`、`System Volume Information`，以及 `node_modules`、`.git`、`out`、`dist` 等工程目录。
+- **扫描选项**：深度（默认不限）、隐藏文件、生成缩略图、读取媒体信息、计算 SHA-256、哈希最大文件。
+- **增量**：启动先读索引（界面秒开），随后后台增量扫描；文件没变就不会重复解析或重算缩略图。
+- **压缩包不解压**：只读文件列表（ZIP 中央目录）判断内容，例如提示"影视资源压缩包"。
+
+## 6. 配置文件
+
+`config\config.json`（不存在自动创建；损坏会备份为 `config.json.broken-<时间>.bak` 并恢复默认，程序不会启动失败）：
+
+```json
+{
+  "background": "",
+  "overlay": 0.4,
+  "backgroundMode": "cover",
+  "windowWidth": 1280,
+  "windowHeight": 720,
+  "windowMaximized": false,
+  "resourceRoot": "",
+  "excludeDirs": [],
+  "sortBy": "name",
+  "sortOrder": "asc",
+  "confirmExecutables": true,
+  "approvedPrograms": [],
+  "showFileExtensions": true,
+  "wallpaperStyle": "fill",
+  "lastCategory": "",
+  "showEmptyCategories": false,
+  "cardSize": "normal",
+  "lastView": "home",
+  "scan": {
+    "maxDepth": 0,
+    "includeHidden": false,
+    "generateThumbnails": true,
+    "readMetadata": true,
+    "computeHash": true,
+    "hashMaxSizeMB": 2048
+  }
+}
+```
+
+资源库目录列表存在索引数据库 `data\index.db` 的 `libraries` 表里（不写注册表）。
+版本号统一在 `package.json` 的 `version`（当前 **1.1.0**）。
+
+## 7. 快捷键
+
+| 按键 | 作用 |
+| --- | --- |
+| `F5` | 重新读取索引 |
+| `Ctrl + F` | 聚焦搜索框 |
+| `Enter` | 打开选中资源 |
+| `Delete` | 删除选中资源（进回收站，二次确认） |
+| `Esc` | 关闭右键菜单 / 弹窗 |
+
+## 8. 安全设计
+
+- 渲染进程 `contextIsolation: true`、`nodeIntegration: false`、`sandbox: true`；
+  所有文件与系统操作都在主进程校验后执行（路径必须位于某个资源库或程序目录内）。
+- 本地图片通过 `toolbox-media://` 协议读取，越界一律 403，网页层无法用 `file://` 直接读盘。
+- 运行 `.exe .msi .msix .bat .cmd .ps1` 前弹确认框（可关闭，也可对单个文件"不再询问"）。
+- 不自动提权、不关闭 Defender、不绕过 SmartScreen、不下载执行任何远程代码。
+- 删除默认走回收站；永久删除需再次确认。移除资源库只删索引，不动磁盘文件。
+- CSP 只允许应用自身资源与本地图片。
+
+## 9. 阶段进度
+
+### Phase 1（v1.1.0）：UI / 交互重构 —— 已完成
+
+| 改动 | 说明 |
+| --- | --- |
+| 取消固定右侧面板 | 原来的「资源总览」常驻占约 300px，已删除；未选中资源时主区域全宽 |
+| 动态详情抽屉 | 单击资源 → 右侧滑出抽屉（384px，170ms），含封面/标题/年份或分辨率/时长、本地信息、简介位、播放/打开、打开文件夹、复制路径、重命名、重新匹配（置灰）、收藏、修改分类；`Esc` 或 `×` 关闭后恢复全宽 |
+| 海报优先卡片 | 影视/图书用 2:3 海报位、音乐用 1:1 封面位、图片壁纸 16:9、程序压缩包用图标位；卡片不再显示 `.mkv/.mp4` 扩展名，改为作品名 + 年份/分辨率/时长；圆角、阴影、悬停上浮 3px（150ms） |
+| 交互统一 | 单击 = 选中并打开详情；双击 = 执行（播放/打开）；右键 = 类型专属菜单（未实现项置灰并写明原因，例如"重新匹配元数据 · Phase 4 接入 TMDB"） |
+| 首页内容化 | 顺序改为 最近添加 / 最近使用 / 收藏 / 分类入口；统计数字压缩成底部一行小字，不再是视觉主体 |
+| 顶部栏精简 | 常驻只留 搜索 / 类型筛选 / 排序 / 升序降序 / 刷新；扫描、资源库管理、更换背景、打开数据目录、设置收进「⋯ 更多」 |
+| 性能 | 每批 120 条 + 滚到底自动续载 + IntersectionObserver 懒加载缩略图（不再一次性渲染几百上千个卡片） |
+| 背景处理 | 背景图 3px 模糊 + 降饱和压暗 + 深色渐变遮罩，保证海报与文字可读；遮罩强度仍由设置里的 0~80% 控制 |
+| 图标清晰度（v1.1.1） | 安装包 / 压缩包改用 Windows Shell 的 **256×256 高分辨率图标**（原先用 `app.getFileIcon` 的 32/48px 再被放大到 ~85px 显示，所以发糊）；位图转换改用 WPF 以**保留 alpha 通道**（透明底不再变黑）；图标显示尺寸从卡片宽度 54% 调到 46%，`app.getFileIcon` 回退路径固定按 40px 原尺寸显示、绝不放大。缩略图成功率从 318/381 提升到 **379/381 → 379/379** |
+
+**Phase 1 未实现（诚实说明）**：在线元数据（TMDB / MusicBrainz / Open Library / AniList）全部未接入；
+抽屉里的"简介"目前只显示本地信息说明，"重新匹配 / 编辑信息 / 查看专辑 / 加入播放列表"为置灰占位；
+漫画分类、电视剧季集视图、专辑曲目视图、真虚拟滚动（当前是分批渲染）也还没做。
+
+**兼容性**：数据库结构未改动（仍是 `libraries / resources / kv` 三张表 + 索引），扫描 / 分类 / 缩略图逻辑未改动，
+配置项未增删（`lastView` 记住上次打开的视图）。旧版遗留的 `.tile-thumb{height:48px}` 等样式已在本阶段覆盖。
+
+> 缩略图管线带版本号（`thumbs.ts` 的 `THUMB_PIPELINE_VERSION`，当前 5，记在 `kv` 表）：
+> 升级这个数字会清空 `data/thumbnails/` 并重置索引状态，下次扫描自动全部重算——改了生成策略就不会继续用旧图。
+
+### Phase 2（v1.2.0）：漫画分类与作品聚合 —— 已完成
+
+| 改动 | 说明 |
+| --- | --- |
+| 漫画判定（综合判断，不看扩展名一刀切） | `.cbz/.cbr/.cb7/.cbt` 直接归漫画；`.zip` 必须有内容证据——包内图片占比 ≥50%，且满足「图片占比 ≥60% + 条目 ≥5 + 首图竖版」或「文件名/目录含漫画线索」；`.pdf` 需文件名或目录线索（如 漫画/comic/manga/卷/第N话）；**`.epub` 有内容证据时也算漫画**（见下）。判定过程与依据写进 `meta_json` 可查 |
+| EPUB 漫画 / 小说的区分（v1.2.1） | 解析 OPF 清单与 spine：图片数 ≥8、**每页平均文字 <300 字**、含 `<img>` 标签 → 判为图集式漫画（实测一本真实漫画 EPUB：73 张图 / 每页约 10 字 / 72 个 `<img>`）；纯文字 EPUB（实测每页约 8177 字）保持「小说」，不会误判 |
+| 判定结果可持久（v1.2.1） | 扫描阶段只给扩展名初判；**文件未变化且已判定过时，扫描不会覆盖内容判定结果**（新增 `metaVersion` 管线版本号，规则改动时统一重判）。避免"内容判定为漫画，下次扫描又被改回小说" |
+| 作品名与卷号解析 | 支持 第N卷 / 第N巻 / 第N话 / Vol.N / Volume N / Chapter N / vN / 末尾数字；自动剥离 `[汉化组]`「【】」等方括号标签；排除把年份（1900–2099）当卷号 |
+| 作品聚合 | 数据库新增 `series_key / series_title / volume` 三列 + 索引；老库启动时自动 `ALTER TABLE` 补列，**不动已有数据** |
+| 漫画墙 | 漫画分类默认「按作品」展示：一部作品一张海报卡，右下角卷数角标；顶部右侧可在「按作品 / 按文件」之间切换 |
+| 作品详情抽屉 | 封面 / 作品名 / 卷数 / 总大小 / 卷列表（卷号 + 文件名 + 大小，双击阅读）/ ▶ 阅读第一卷 / 打开文件夹；原名、作者、简介明确标注「未匹配（Phase 7 接入 AniList）」 |
+| 封面优先级 | 同目录 `cover.jpg/png` → `folder.jpg/png` → `0.jpg` → `001.jpg` → 与文件同名的 jpg/png → 包内首图（PDF 走系统首页缩略图；EPUB 走 OPF 声明的封面，失败再退回包内 `cover.*` 或图集首图） |
+| 交互 | 单击作品 = 打开卷列表；双击作品 = 阅读第一卷；右键作品 = 阅读第一卷 / 查看详情 / 收藏 / 打开所在文件夹 / 复制作品名 / 在线匹配（置灰） |
+
+**Phase 2 未实现（诚实说明）**：内嵌阅读器（当前阅读 = 用系统默认程序打开）；CBR/RAR 的包内解析（本机没有 unrar，`.cbr` 只能按扩展名归类）；跨目录合卷（不同目录下的同名作品目前算两部）；在线元数据；`.txt` 小说没有封面（纯文本文件本身不含图片，用系统图标）。
+
+### Phase 3（v1.3.0）：统一元数据表 + Provider 抽象层 —— 已完成
+
+| 改动 | 说明 |
+| --- | --- |
+| `metadata` 表 | 作品（系列）级元数据独立成表：`title / original_title / year / overview / genres / author / studio / country / language / rating / external_source / external_id / match_status / match_confidence / poster_path / backdrop_path / cover_path / extra_json`，以作品 key 唯一；老库启动自动建表，不动已有数据 |
+| 作品实体与本地文件分离 | `resources` 存文件（路径、大小、卷号、类型、解析出的标签），`metadata` 存作品；一部作品 = 1 行元数据 + N 行文件。漫画 / 小说 / 影视都已归属作品（音乐等 Phase 5 按专辑聚合后再接，避免每首歌变成一个"作品"） |
+| Provider 抽象层 | `src/main/metadata/`：`types`（`MetadataProvider` 接口）/ `registry`（注册表）/ `normalize`（清洗 + 打分 + 决策）/ `store`（读写 + 本地填充）/ `index`（门面）。接新数据源只需实现 `search()` / `detail()` 再 `registerProvider()`，业务层不用改 |
+| 匹配决策 | 标题相似度（Dice 二元组，中英文通用）+ 年份 + 作者，**按实际可用信号归一化权重**（只有标题可比时，标题 100% 相同就是满分）；≥0.90 且与第二名拉开 0.08 → 自动 `matched`，≥0.55 → `pending` 等人工确认，其余 `failed`；并列第一 → `pending` |
+| 文件名清洗 | 去掉 `[..]`「【】」`(..)` 标签、画质/编码/音轨噪音、卷号标记与扩展名；能拆分 `《书名》作者：某某` 形式的作者（实测 16 本小说里正确拆出 捕梦者 / 纯洁滴小龙 / 佛前献花，书名号也一并去掉） |
+| 本地信息填充 | 扫描结束后按作品统一填充（标题 / 作者 / 年份），状态记 `local`；Provider 结果（`matched` / `confirmed`）优先，本地信息只填空白、不覆盖 |
+| 界面 | 详情抽屉新增「作品信息」区块（作品 / 作者 / 原名 / 年份 / 元数据状态），作品抽屉显示 名称 / 原名 / 作者 / 卷数 / 元数据状态；「在线匹配」按钮可点，会如实告诉你为什么现在匹配不了 |
+| 验证机制 | 自检里临时注册一个"只用于自检"的假 Provider，跑通「注册 → 搜索 → 打分 → 写库」全链路后**立即还原真实数据**，确保 Provider 链路真的可用而不是纸面设计 |
+
+**Phase 3 未实现（诚实说明）**：一个在线数据源都没接——TMDB / MusicBrainz / Open Library / AniList 全部处于"已登记、未实现"状态，点「在线匹配」会返回"尚未接入在线元数据源（Phase 4~7）"；海报 / 背景图下载与缓存属于 Phase 8；元数据匹配中心界面属于 Phase 9；手动编辑作品信息（写库接口已就绪）排在下一步。
+
+### 后续阶段（规划）
+
+| Phase | 内容 |
+| --- | --- |
+| 2 | 漫画分类（CBZ/CBR/PDF/ZIP 判定 + 卷号解析 + 封面优先级 + 阅读入口）✅ 见上 |
+| 3 | 统一元数据数据库（metadata 表、external_id、match_status/confidence、Provider 层）✅ 见上 |
+| 4-7 | TMDB（影视）· MusicBrainz/CoverArt（音乐）· Open Library（小说）· AniList（漫画） |
+| 8 | 海报 / 封面 / 背景图本地缓存（`data/metadata/`），断网依旧可用 |
+| 9 | 元数据匹配中心（待匹配 / 已匹配 / 失败 / 待确认 + 批量确认 + 手动匹配） |
+| 10 | 性能：真虚拟网格、查询缓存、数据库进一步优化 |
+
+## 10. 实测验证（Windows 10 22H2 / Electron 44.5.1 / Node 24.21.0）
+
+`pnpm smoke --smoke-scan`（真实扫描 + 真实界面）：
+
+| 检查项 | 结果 |
+| --- | --- |
+| 首次全量扫描 | 381 个资源 / 126 秒（含缩略图与元数据），后续增量扫描 **0.2~0.4 秒** |
+| 自动分类 | 壁纸 281、音乐 64、小说 16、安装包 9、压缩包 7、电影 2（无 image/tv/anime 误判） |
+| 视频元数据 | `《僵尸世界大战》.mp4` → 1280×720 · 2:03:04；`机器侠.mp4` → 1280×544 · 1:42:15（容器解析） |
+| 音乐元数据 | `01. 爱在西元前.flac` → 周杰伦 · 范特西 · 3:56；`01. 爱人错过.flac` → 告五人 · 我肯定在几百年前就说过爱你 · 4:52 |
+| 图片分辨率 | 1500×900 / 3840×2160 / 6000×4000（只读文件头，不整图解码） |
+| 缩略图 | 成功 318 / 381（壁纸 281/281、视频 2/2 首帧、音乐 35/64 有内嵌封面；其余无系统缩略图→回退真实文件图标） |
+| 缩略图缓存 | 318 个文件 / 74.2 MB，重启不重算 |
+| 全库搜索 | `DSC` 命中 39 项（跨分类，带类型标签） |
+| 目录浏览 | 6 个一级目录与层级计数正确（`电影` 显示 0 文件 / 2 目录，进入子目录即见影片） |
+| 界面 | 左侧 13 类虚拟分类 + 最近/收藏/重复/目录/资源库/设置；首页仪表盘；控制台 0 错误 |
+| 索引速度 | 启动先读索引，界面不等待扫描；扫描在后台并显示 已扫描/总数/当前文件/各类型数量 |
+
+界面截图：`docs\screenshots\`（10-首页、11-音乐、12-电影、13-资源库、14-目录浏览、15-全部资源）。
+
+## 11. 已知边界（1.1.0）
+
+- 只解析 ZIP 的中央目录；`7z`/`rar` 暂不做内容判定（不自动解压是刻意设计）。
+- `.wma`/`.ape`/`.m4b` 等少数格式的标签暂未解析（不影响分类与打开）。
+- 电视剧/动漫细分依赖命名习惯，个别文件可能需要手动改一次分类。
+- 压缩包内文件不会出现在索引里（索引的是压缩包本身）。
+- 去重只对"大小相同"的文件计算 SHA-256，且受"哈希最大文件"限制，超大文件默认跳过。
+- 首次扫描 1000+ 文件时缩略图生成会持续一会儿（线程内串行解码，避免卡界面），之后增量几乎瞬时。
+
+## 12. 常见问题
+
+1. **`pnpm dev` 立刻退出并报 `registerSchemesAsPrivileged` 相关错误**
+   → 当前终端有 `ELECTRON_RUN_AS_NODE=1`，Electron 被当成普通 Node 跑了：先 `Remove-Item Env:ELECTRON_RUN_AS_NODE`。
+2. **`pnpm setup:electron` 卡在 0 字节** → 设置 `ELECTRON_MIRROR` 镜像（见第 3 节）。
+3. **`pnpm pack:portable` 报 `No JSON content found in output`**
+   → electron-builder 需要在 PATH 中找到 `pnpm` 命令（`pnpm -v` 能执行即可）。
+4. **中文路径乱码**（自己二次开发时）→ 调用 PowerShell 必须设置
+   `[Console]::OutputEncoding = [System.Text.Encoding]::UTF8`，本工程 `wallpaper.ts` / `shell-worker.ts` 已处理。
+5. **想彻底重建索引** → 关闭程序，删除 `data\index.db`（或整个 `data\`），重新打开即全量扫描。

@@ -1,0 +1,880 @@
+{
+  "info": {
+    "version": "1.2.1",
+    "appRoot": "G:\\tu\\YX的小屋",
+    "configDir": "G:\\tu\\YX的小屋\\config",
+    "dataDir": "G:\\tu\\YX的小屋\\data",
+    "configPath": "G:\\tu\\YX的小屋\\config\\config.json",
+    "packaged": false,
+    "powershell": true,
+    "electron": "44.5.1",
+    "node": "24.21.0"
+  },
+  "config": {
+    "background": "G:\\tu\\YX的小屋\\config\\backgrounds\\bg.jfif",
+    "overlay": 0.4,
+    "backgroundMode": "cover",
+    "windowWidth": 1288,
+    "windowHeight": 736,
+    "windowMaximized": false,
+    "resourceRoot": "",
+    "excludeDirs": [],
+    "sortBy": "name",
+    "sortOrder": "asc",
+    "confirmExecutables": true,
+    "approvedPrograms": [],
+    "showFileExtensions": true,
+    "wallpaperStyle": "fill",
+    "lastCategory": "压缩包",
+    "showEmptyCategories": false,
+    "cardSize": "normal",
+    "scan": {
+      "maxDepth": 0,
+      "includeHidden": false,
+      "generateThumbnails": true,
+      "readMetadata": true,
+      "computeHash": true,
+      "hashMaxSizeMB": 2048
+    },
+    "lastView": "all"
+  },
+  "libraries": [
+    {
+      "id": 1,
+      "path": "G:\\tu\\YX的小屋",
+      "label": "YX的小屋",
+      "enabled": true,
+      "maxDepth": 0,
+      "createdAt": 1790782248099,
+      "lastScanned": 1790866060755,
+      "resourceCount": 383
+    }
+  ],
+  "stats": {
+    "total": 383,
+    "kinds": [
+      {
+        "kind": "archive",
+        "count": 7
+      },
+      {
+        "kind": "comic",
+        "count": 2
+      },
+      {
+        "kind": "image",
+        "count": 1
+      },
+      {
+        "kind": "installer",
+        "count": 9
+      },
+      {
+        "kind": "movie",
+        "count": 2
+      },
+      {
+        "kind": "music",
+        "count": 64
+      },
+      {
+        "kind": "novel",
+        "count": 16
+      },
+      {
+        "kind": "other",
+        "count": 1
+      },
+      {
+        "kind": "wallpaper",
+        "count": 281
+      }
+    ],
+    "favorites": 0,
+    "recentAdded": 383,
+    "recentUsed": 1,
+    "duplicates": 0,
+    "libraries": 1,
+    "folderCount": 8,
+    "totalSize": 11969764699
+  },
+  "processStats": {
+    "thumbOk": 383,
+    "thumbFailed": 0,
+    "thumbPending": 0,
+    "metaDone": 373,
+    "metaPending": 10,
+    "hashed": 0
+  },
+  "topFolders": [
+    {
+      "name": "安装包",
+      "path": "",
+      "relDir": "安装包",
+      "libraryId": 1,
+      "fileCount": 9,
+      "subFolderCount": 0,
+      "totalSize": 1191989286
+    },
+    {
+      "name": "壁纸",
+      "path": "",
+      "relDir": "壁纸",
+      "libraryId": 1,
+      "fileCount": 281,
+      "subFolderCount": 0,
+      "totalSize": 2751808011
+    },
+    {
+      "name": "电影",
+      "path": "",
+      "relDir": "电影",
+      "libraryId": 1,
+      "fileCount": 0,
+      "subFolderCount": 2,
+      "totalSize": 0
+    },
+    {
+      "name": "漫画",
+      "path": "",
+      "relDir": "漫画",
+      "libraryId": 1,
+      "fileCount": 0,
+      "subFolderCount": 1,
+      "totalSize": 0
+    },
+    {
+      "name": "小说",
+      "path": "",
+      "relDir": "小说",
+      "libraryId": 1,
+      "fileCount": 16,
+      "subFolderCount": 0,
+      "totalSize": 180316326
+    },
+    {
+      "name": "压缩包",
+      "path": "",
+      "relDir": "压缩包",
+      "libraryId": 1,
+      "fileCount": 7,
+      "subFolderCount": 0,
+      "totalSize": 1373246614
+    },
+    {
+      "name": "音乐",
+      "path": "",
+      "relDir": "音乐",
+      "libraryId": 1,
+      "fileCount": 64,
+      "subFolderCount": 0,
+      "totalSize": 3497274444
+    }
+  ],
+  "sampleMovie": {
+    "total": 2,
+    "items": [
+      {
+        "id": 316,
+        "path": "G:\\tu\\YX的小屋\\电影\\僵尸世界大战\\《僵尸世界大战》.mp4",
+        "name": "《僵尸世界大战》.mp4",
+        "baseName": "《僵尸世界大战》",
+        "ext": ".mp4",
+        "kind": "movie",
+        "size": 1488215040,
+        "mtimeMs": 1660270136000,
+        "addedMs": 1790782248270,
+        "libraryId": 1,
+        "relDir": "电影\\僵尸世界大战",
+        "isFavorite": false,
+        "lastOpenedMs": 0,
+        "openCount": 0,
+        "title": "",
+        "subtitle": "",
+        "width": 1280,
+        "height": 720,
+        "durationMs": 7383759,
+        "cardLine": "720P · 2:03:04",
+        "seriesKey": "movie:僵尸世界大战",
+        "seriesTitle": "僵尸世界大战",
+        "volume": 0
+      },
+      {
+        "id": 317,
+        "path": "G:\\tu\\YX的小屋\\电影\\机器侠\\机器侠.mp4",
+        "name": "机器侠.mp4",
+        "baseName": "机器侠",
+        "ext": ".mp4",
+        "kind": "movie",
+        "size": 1453870355,
+        "mtimeMs": 1706086408300,
+        "addedMs": 1790782248270,
+        "libraryId": 1,
+        "relDir": "电影\\机器侠",
+        "isFavorite": false,
+        "lastOpenedMs": 0,
+        "openCount": 0,
+        "title": "",
+        "subtitle": "",
+        "width": 1280,
+        "height": 544,
+        "durationMs": 6135270,
+        "cardLine": "1280×544 · 1:42:15",
+        "seriesKey": "movie:机器侠",
+        "seriesTitle": "机器侠",
+        "volume": 0
+      }
+    ]
+  },
+  "sampleMusic": {
+    "total": 64,
+    "items": [
+      {
+        "id": 318,
+        "path": "G:\\tu\\YX的小屋\\音乐\\01. Welcome To New York (Taylor's Version).flac",
+        "name": "01. Welcome To New York (Taylor's Version).flac",
+        "baseName": "01. Welcome To New York (Taylor's Version)",
+        "ext": ".flac",
+        "kind": "music",
+        "size": 49744532,
+        "mtimeMs": 1698416469262,
+        "addedMs": 1790782248271,
+        "libraryId": 1,
+        "relDir": "音乐",
+        "isFavorite": false,
+        "lastOpenedMs": 0,
+        "openCount": 0,
+        "title": "01. Welcome To New York (Taylor's Version)",
+        "subtitle": "",
+        "width": 0,
+        "height": 0,
+        "durationMs": 212600,
+        "cardLine": "Taylor Swift · 1989 (Taylor's Version) · 3:33",
+        "seriesKey": "",
+        "seriesTitle": "",
+        "volume": 0
+      },
+      {
+        "id": 319,
+        "path": "G:\\tu\\YX的小屋\\音乐\\01. 爱人错过.flac",
+        "name": "01. 爱人错过.flac",
+        "baseName": "01. 爱人错过",
+        "ext": ".flac",
+        "kind": "music",
+        "size": 110784499,
+        "mtimeMs": 1746760224714,
+        "addedMs": 1790782248272,
+        "libraryId": 1,
+        "relDir": "音乐",
+        "isFavorite": false,
+        "lastOpenedMs": 0,
+        "openCount": 0,
+        "title": "爱人错过",
+        "subtitle": "",
+        "width": 0,
+        "height": 0,
+        "durationMs": 292075,
+        "cardLine": "告五人 · 我肯定在几百年前就说过爱你 · 4:52",
+        "seriesKey": "",
+        "seriesTitle": "",
+        "volume": 0
+      },
+      {
+        "id": 320,
+        "path": "G:\\tu\\YX的小屋\\音乐\\01. 爱在西元前.flac",
+        "name": "01. 爱在西元前.flac",
+        "baseName": "01. 爱在西元前",
+        "ext": ".flac",
+        "kind": "music",
+        "size": 29337374,
+        "mtimeMs": 1750384916000,
+        "addedMs": 1790782248272,
+        "libraryId": 1,
+        "relDir": "音乐",
+        "isFavorite": false,
+        "lastOpenedMs": 0,
+        "openCount": 0,
+        "title": "爱在西元前",
+        "subtitle": "",
+        "width": 0,
+        "height": 0,
+        "durationMs": 236253,
+        "cardLine": "周杰伦 · 范特西 · 3:56",
+        "seriesKey": "",
+        "seriesTitle": "",
+        "volume": 0
+      }
+    ]
+  },
+  "sampleWallpaper": {
+    "total": 281,
+    "items": [
+      {
+        "id": 17,
+        "path": "G:\\tu\\YX的小屋\\壁纸\\2 (117).jpg",
+        "name": "2 (117).jpg",
+        "baseName": "2 (117)",
+        "ext": ".jpg",
+        "kind": "wallpaper",
+        "size": 600810,
+        "mtimeMs": 1333296130000,
+        "addedMs": 1790782248139,
+        "libraryId": 1,
+        "relDir": "壁纸",
+        "isFavorite": false,
+        "lastOpenedMs": 0,
+        "openCount": 0,
+        "title": "",
+        "subtitle": "",
+        "width": 1500,
+        "height": 900,
+        "durationMs": 0,
+        "cardLine": "1500×900 · JPG",
+        "seriesKey": "",
+        "seriesTitle": "",
+        "volume": 0
+      },
+      {
+        "id": 11,
+        "path": "G:\\tu\\YX的小屋\\壁纸\\03.jpg",
+        "name": "03.jpg",
+        "baseName": "03",
+        "ext": ".jpg",
+        "kind": "wallpaper",
+        "size": 422872,
+        "mtimeMs": 1660653473950,
+        "addedMs": 1790782248136,
+        "libraryId": 1,
+        "relDir": "壁纸",
+        "isFavorite": false,
+        "lastOpenedMs": 0,
+        "openCount": 0,
+        "title": "",
+        "subtitle": "",
+        "width": 3840,
+        "height": 2160,
+        "durationMs": 0,
+        "cardLine": "3840×2160 · JPG",
+        "seriesKey": "",
+        "seriesTitle": "",
+        "volume": 0
+      }
+    ]
+  },
+  "duplicates": {
+    "total": 0,
+    "items": []
+  },
+  "search": {
+    "total": 39,
+    "items": [
+      {
+        "id": 87,
+        "path": "G:\\tu\\YX的小屋\\壁纸\\_DSC0348 拷貝.jpg",
+        "name": "_DSC0348 拷貝.jpg",
+        "baseName": "_DSC0348 拷貝",
+        "ext": ".jpg",
+        "kind": "wallpaper",
+        "size": 12748619,
+        "mtimeMs": 1674059242000,
+        "addedMs": 1790782248175,
+        "libraryId": 1,
+        "relDir": "壁纸",
+        "isFavorite": false,
+        "lastOpenedMs": 0,
+        "openCount": 0,
+        "title": "",
+        "subtitle": "",
+        "width": 6000,
+        "height": 4000,
+        "durationMs": 0,
+        "cardLine": "6000×4000 · JPG",
+        "seriesKey": "",
+        "seriesTitle": "",
+        "volume": 0
+      },
+      {
+        "id": 88,
+        "path": "G:\\tu\\YX的小屋\\壁纸\\_DSC6383 拷貝.jpg",
+        "name": "_DSC6383 拷貝.jpg",
+        "baseName": "_DSC6383 拷貝",
+        "ext": ".jpg",
+        "kind": "wallpaper",
+        "size": 8950432,
+        "mtimeMs": 1669026138834,
+        "addedMs": 1790782248175,
+        "libraryId": 1,
+        "relDir": "壁纸",
+        "isFavorite": false,
+        "lastOpenedMs": 0,
+        "openCount": 0,
+        "title": "",
+        "subtitle": "",
+        "width": 6000,
+        "height": 4000,
+        "durationMs": 0,
+        "cardLine": "6000×4000 · JPG",
+        "seriesKey": "",
+        "seriesTitle": "",
+        "volume": 0
+      },
+      {
+        "id": 89,
+        "path": "G:\\tu\\YX的小屋\\壁纸\\_DSC6396 拷貝.jpg",
+        "name": "_DSC6396 拷貝.jpg",
+        "baseName": "_DSC6396 拷貝",
+        "ext": ".jpg",
+        "kind": "wallpaper",
+        "size": 8972195,
+        "mtimeMs": 1669026139354,
+        "addedMs": 1790782248176,
+        "libraryId": 1,
+        "relDir": "壁纸",
+        "isFavorite": false,
+        "lastOpenedMs": 0,
+        "openCount": 0,
+        "title": "",
+        "subtitle": "",
+        "width": 6000,
+        "height": 4000,
+        "durationMs": 0,
+        "cardLine": "6000×4000 · JPG",
+        "seriesKey": "",
+        "seriesTitle": "",
+        "volume": 0
+      }
+    ]
+  },
+  "comicSeries": [
+    {
+      "key": "comic:恋母性活子豚の館",
+      "title": "恋母性活 - 子豚の館",
+      "volumes": 2,
+      "numbered": 0,
+      "cover": "G:\\tu\\YX的小屋\\漫画\\子豚の館 (らら8)\\恋母性活\\恋母性活 - 子豚の館 (らら8).epub"
+    }
+  ],
+  "comicSeriesDetail": {
+    "title": "恋母性活 - 子豚の館",
+    "volumes": [
+      "第0卷 恋母性活 - 子豚の館 (らら8).epub",
+      "第0卷 恋母性活 - 子豚の館 (らら8).pdf"
+    ],
+    "cover": "G:\\tu\\YX的小屋\\漫画\\子豚の館 (らら8)\\恋母性活\\恋母性活 - 子豚の館 (らら8).jpg",
+    "location": "G:\\tu\\YX的小屋\\漫画\\子豚の館 (らら8)\\恋母性活"
+  },
+  "zipKinds": [
+    "DirectX4.0.zip",
+    "Kingdoms.and.Castles.AI.Kingdoms.7z",
+    "Luobo.7z",
+    "Plants vs Zombies GOTY CHS.7z",
+    "打造世界中文版v1.4.014(集成DLC).7z",
+    "石油骚动.7z",
+    "融合2.8.1：诸神射击、塔防更新.zip"
+  ],
+  "metadataStats": {
+    "total": 19,
+    "byStatus": {
+      "local": 19
+    },
+    "bySource": {
+      "local": 19
+    },
+    "providers": [
+      {
+        "id": "tmdb",
+        "label": "TMDB（影视）",
+        "kinds": [
+          "movie",
+          "tv",
+          "anime"
+        ],
+        "requiresNetwork": true,
+        "implemented": false
+      },
+      {
+        "id": "musicbrainz",
+        "label": "MusicBrainz（音乐）",
+        "kinds": [
+          "music"
+        ],
+        "requiresNetwork": true,
+        "implemented": false
+      },
+      {
+        "id": "openlibrary",
+        "label": "Open Library（小说）",
+        "kinds": [
+          "novel"
+        ],
+        "requiresNetwork": true,
+        "implemented": false
+      },
+      {
+        "id": "anilist",
+        "label": "AniList（漫画 / 动画）",
+        "kinds": [
+          "comic",
+          "anime"
+        ],
+        "requiresNetwork": true,
+        "implemented": false
+      }
+    ]
+  },
+  "metadataProviders": {
+    "registered": [
+      {
+        "id": "tmdb",
+        "label": "TMDB（影视）",
+        "kinds": [
+          "movie",
+          "tv",
+          "anime"
+        ],
+        "requiresNetwork": true,
+        "implemented": false
+      },
+      {
+        "id": "musicbrainz",
+        "label": "MusicBrainz（音乐）",
+        "kinds": [
+          "music"
+        ],
+        "requiresNetwork": true,
+        "implemented": false
+      },
+      {
+        "id": "openlibrary",
+        "label": "Open Library（小说）",
+        "kinds": [
+          "novel"
+        ],
+        "requiresNetwork": true,
+        "implemented": false
+      },
+      {
+        "id": "anilist",
+        "label": "AniList（漫画 / 动画）",
+        "kinds": [
+          "comic",
+          "anime"
+        ],
+        "requiresNetwork": true,
+        "implemented": false
+      }
+    ],
+    "implemented": 0,
+    "planned": 4
+  },
+  "providerPipeline": {
+    "seriesKey": "comic:恋母性活子豚の館",
+    "providerCount": 1,
+    "status": "matched",
+    "confidence": 1,
+    "writtenSource": "smoke-only",
+    "writtenTitle": "恋母性活 - 子豚の館",
+    "writtenOriginalTitle": "SMOKE ORIGINAL TITLE",
+    "writtenAuthor": "自检作者",
+    "writtenOverview": "自检返回的简介",
+    "writtenRating": 8.5,
+    "writtenGenres": [
+      "自检"
+    ]
+  },
+  "providerPipelineRestored": true,
+  "metadataRows": [
+    {
+      "seriesKey": "comic:恋母性活子豚の館",
+      "title": "恋母性活",
+      "author": "子豚の館 (らら8)",
+      "status": "local",
+      "source": "local",
+      "confidence": 0
+    },
+    {
+      "seriesKey": "novel:明克街13号",
+      "title": "明克街13号",
+      "author": "纯洁滴小龙",
+      "status": "local",
+      "source": "local",
+      "confidence": 0
+    },
+    {
+      "seriesKey": "novel:神秘复苏",
+      "title": "神秘复苏",
+      "author": "佛前献花",
+      "status": "local",
+      "source": "local",
+      "confidence": 0
+    },
+    {
+      "seriesKey": "novel:异常收藏家",
+      "title": "异常收藏家",
+      "author": "捕梦者",
+      "status": "local",
+      "source": "local",
+      "confidence": 0
+    },
+    {
+      "seriesKey": "novel:炼狱艺术家",
+      "title": "炼狱艺术家",
+      "author": "",
+      "status": "local",
+      "source": "local",
+      "confidence": 0
+    },
+    {
+      "seriesKey": "novel:我只想安静地抄书啊",
+      "title": "我只想安静地抄书啊",
+      "author": "",
+      "status": "local",
+      "source": "local",
+      "confidence": 0
+    },
+    {
+      "seriesKey": "novel:文化入侵异世界",
+      "title": "文化入侵异世界",
+      "author": "",
+      "status": "local",
+      "source": "local",
+      "confidence": 0
+    },
+    {
+      "seriesKey": "novel:诡秘地海",
+      "title": "诡秘地海",
+      "author": "",
+      "status": "local",
+      "source": "local",
+      "confidence": 0
+    },
+    {
+      "seriesKey": "novel:我有一座恐怖屋",
+      "title": "我有一座恐怖屋",
+      "author": "",
+      "status": "local",
+      "source": "local",
+      "confidence": 0
+    },
+    {
+      "seriesKey": "novel:从红月开始",
+      "title": "从红月开始",
+      "author": "",
+      "status": "local",
+      "source": "local",
+      "confidence": 0
+    },
+    {
+      "seriesKey": "novel:我的治愈系游戏",
+      "title": "我的治愈系游戏",
+      "author": "",
+      "status": "local",
+      "source": "local",
+      "confidence": 0
+    },
+    {
+      "seriesKey": "novel:我真没想出名啊",
+      "title": "我真没想出名啊",
+      "author": "",
+      "status": "local",
+      "source": "local",
+      "confidence": 0
+    }
+  ],
+  "works": 19,
+  "workSeriesSample": [
+    {
+      "kind": "comic",
+      "title": "恋母性活 - 子豚の館",
+      "volumes": 2
+    },
+    {
+      "kind": "novel",
+      "title": "从红月开始",
+      "volumes": 1
+    },
+    {
+      "kind": "novel",
+      "title": "异常收藏家",
+      "volumes": 1
+    },
+    {
+      "kind": "novel",
+      "title": "异常生物见闻录",
+      "volumes": 1
+    },
+    {
+      "kind": "movie",
+      "title": "僵尸世界大战",
+      "volumes": 1
+    },
+    {
+      "kind": "movie",
+      "title": "机器侠",
+      "volumes": 1
+    }
+  ],
+  "matcherTests": {
+    "cleaned": "海贼王",
+    "alternates": [
+      "海贼王 第001卷"
+    ],
+    "year": 0,
+    "exactScore": 1,
+    "mediumScore": 0.9,
+    "wrongScore": 0.045,
+    "decisionExact": "matched",
+    "decisionAmbiguous": "matched",
+    "decisionTie": "pending",
+    "decisionWrong": "failed",
+    "decisionEmpty": "failed",
+    "yearAwareScore": 1,
+    "yearMismatchScore": 0.869
+  },
+  "novelEpubs": [],
+  "comicEpubs": [
+    {
+      "name": "恋母性活 - 子豚の館 (らら8).epub",
+      "series": "恋母性活 - 子豚の館",
+      "volume": 0,
+      "coverBytes": 287373,
+      "pages": 2,
+      "images": 73,
+      "avgTextPerPage": 10
+    }
+  ],
+  "musicTest": {
+    "name": "孙燕姿 - 我不难过.flac",
+    "thumb": true,
+    "title": "我不难过",
+    "artist": "孙燕姿",
+    "album": "未完成",
+    "durationMs": 320400
+  },
+  "movieTest": {
+    "name": "《僵尸世界大战》.mp4",
+    "thumb": true,
+    "width": 1280,
+    "height": 720,
+    "durationMs": 7383759,
+    "cardLine": "720P · 2:03:04"
+  },
+  "archiveTest": {
+    "name": "Kingdoms.and.Castles.AI.Kingdoms.7z",
+    "innerKind": "",
+    "innerSummary": ""
+  },
+  "installerImageTest": {
+    "name": "WeChatWin_4.1.7.exe",
+    "generated": true,
+    "resolution": "256x256 RGBA",
+    "bytes": 10352
+  },
+  "archiveImageTest": {
+    "name": "Kingdoms.and.Castles.AI.Kingdoms.7z",
+    "generated": true,
+    "resolution": "256x256 RGBA",
+    "bytes": 9799
+  },
+  "movieImageTest": {
+    "name": "《僵尸世界大战》.mp4",
+    "generated": true,
+    "resolution": "768x432 RGBA",
+    "bytes": 122411
+  },
+  "renderer": {
+    "loaded": true,
+    "errors": [],
+    "dom": {
+      "nav": 18,
+      "navLabels": [
+        "首页",
+        "全部资源",
+        "电影",
+        "音乐",
+        "小说",
+        "漫画",
+        "图片",
+        "壁纸",
+        "安装包",
+        "压缩包",
+        "其他",
+        "最近添加",
+        "最近使用",
+        "收藏",
+        "重复资源",
+        "目录",
+        "资源库",
+        "设置"
+      ],
+      "homeCards": 0,
+      "drawer": false,
+      "drawerTitle": "",
+      "tiles": 120,
+      "hint": "提示：单击选择资源查看信息，双击用系统默认程序打开。",
+      "version": "Version : 1.2.1",
+      "api": true,
+      "toasts": []
+    }
+  },
+  "interactProbe": {
+    "drawerOpened": true,
+    "drawerTitle": "01. Welcome To New York (Taylor's Version)",
+    "drawerRows": 10,
+    "drawerActions": 7,
+    "moreItems": [
+      "立即扫描资源库",
+      "资源库管理…",
+      "更换工具箱背景…",
+      "打开索引数据目录",
+      "设置…"
+    ],
+    "drawerClosed": true,
+    "gridTiles": 120,
+    "drawerInfo": [
+      "艺术家=Taylor Swift",
+      "专辑=1989 (Taylor's Version)",
+      "时长=3:33",
+      "格式=FLAC",
+      "码率=1872 kbps",
+      "本地文件=01. Welcome To New York (Taylor's Version).flac",
+      "文件大小=47.4 MB",
+      "修改时间=2023-10-27 22:21",
+      "加入索引=2026-09-30 23:30",
+      "文件路径=G:\\tu\\YX的小屋\\音乐\\01. Welcome To New York (Taylor's Version).flac"
+    ],
+    "posterBox": {
+      "w": 343,
+      "h": 343
+    },
+    "posterImg": {
+      "w": 342,
+      "h": 342,
+      "natural": "512x512"
+    },
+    "cardImg": {
+      "w": 180,
+      "h": 180,
+      "natural": "512x512"
+    },
+    "movieViewActive": true,
+    "workDrawerRows": [
+      "分辨率=1280 × 720",
+      "时长=2:03:04",
+      "格式=MP4",
+      "本地文件=《僵尸世界大战》.mp4",
+      "文件大小=1.39 GB",
+      "修改时间=2022-08-12 10:08",
+      "加入索引=2026-09-30 23:30",
+      "文件路径=G:\\tu\\YX的小屋\\电影\\僵尸世界大战\\《僵尸世界大战》.mp4",
+      "作品=僵尸世界大战",
+      "元数据=本地信息 · local"
+    ],
+    "workDrawerSections": [
+      "本地信息",
+      "作品信息",
+      "简介",
+      "分类"
+    ]
+  }
+}
