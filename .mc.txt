@@ -1,0 +1,71 @@
+﻿
+>   "matchingCenter": {
+      "total": 78,
+      "byStatus": {
+        "pending": 1,
+        "failed": 1,
+        "local": 75,
+        "matched": 1
+      },
+      "rowsWithCandidates": 0,
+      "sample": [
+        {
+          "title": "1989 (Taylor's Version)",
+          "kind": "music",
+          "status": "pending",
+          "source": "local",
+          "candidates": 0
+        },
+        {
+          "title": "僵尸世界大战",
+          "kind": "movie",
+          "status": "failed",
+          "source": "local",
+          "candidates": 0
+        },
+        {
+          "title": "JJ的咖啡调调, Vol. 2",
+          "kind": "music",
+>   "batchRun": {
+      "running": false,
+      "total": 4,
+      "done": 4,
+      "matched": 0,
+      "pending": 1,
+      "failed": 3,
+      "skipped": 0,
+      "current": "",
+      "startedAt": 1790870574627,
+      "finishedAt": 1790870580518,
+      "cancelled": false,
+      "lastError": "The Moment：候选最高仅 1.00，需要人工确认"
+    },
+>   "batchResult": [
+      {
+        "title": "1989 (Taylor's Version)",
+        "status": "pending",
+        "source": "local",
+        "year": 2023,
+        "author": "Taylor Swift",
+        "candidates": 0
+      },
+      {
+        "title": "The Moment",
+        "status": "pending",
+        "source": "local",
+        "year": 0,
+        "author": "孙燕姿",
+        "candidates": 6
+      },
+      {
+        "title": "JJ的咖啡调调, Vol. 2",
+        "status": "failed",
+        "source": "local",
+        "year": 0,
+        "author": "林俊杰",
+        "candidates": 0
+      },
+      {
+        "title": "Love国语情歌集",
+
+

@@ -10,7 +10,7 @@
 ===== TOOLBOX_SMOKE =====
 {
   "info": {
-    "version": "1.8.0",
+    "version": "1.9.0",
     "appRoot": "G:\\tu\\YX的小屋",
     "configDir": "G:\\tu\\YX的小屋\\config",
     "dataDir": "G:\\tu\\YX的小屋\\data",
@@ -64,10 +64,62 @@
       "enabled": true,
       "maxDepth": 0,
       "createdAt": 1790782248099,
-      "lastScanned": 1790898276279,
+      "lastScanned": 1790903403089,
       "resourceCount": 383
     }
   ],
+  "scan": {
+    "ms": 278,
+    "progress": {
+      "libraryId": 1,
+      "libraryPath": "G:\\tu\\YX的小屋",
+      "phase": "done",
+      "scanned": 383,
+      "total": 383,
+      "current": "",
+      "counts": [
+        {
+          "kind": "archive",
+          "count": 7
+        },
+        {
+          "kind": "wallpaper",
+          "count": 281
+        },
+        {
+          "kind": "installer",
+          "count": 9
+        },
+        {
+          "kind": "novel",
+          "count": 16
+        },
+        {
+          "kind": "comic",
+          "count": 2
+        },
+        {
+          "kind": "image",
+          "count": 1
+        },
+        {
+          "kind": "other",
+          "count": 1
+        },
+        {
+          "kind": "movie",
+          "count": 2
+        },
+        {
+          "kind": "music",
+          "count": 64
+        }
+      ],
+      "startedAt": 1790903964306,
+      "finishedAt": 1790903964579,
+      "error": ""
+    }
+  },
   "stats": {
     "total": 383,
     "kinds": [
@@ -110,7 +162,7 @@
     ],
     "favorites": 0,
     "recentAdded": 383,
-    "recentUsed": 1,
+    "recentUsed": 2,
     "duplicates": 0,
     "libraries": 1,
     "folderCount": 8,
@@ -652,20 +704,20 @@
     "detailPath": "thumbnails\\detail\\d4bd5eac2bf3659287f16c41a072f9d3e6d830aa.png"
   },
   "thumbCache": {
-    "files": 405,
-    "bytes": 26544717,
+    "files": 407,
+    "bytes": 27174379,
     "bySize": {
       "card": {
         "files": 338,
         "bytes": 22529854
       },
       "detail": {
-        "files": 5,
-        "bytes": 3239152
+        "files": 6,
+        "bytes": 3854785
       },
       "icon": {
-        "files": 62,
-        "bytes": 775711
+        "files": 63,
+        "bytes": 789740
       }
     }
   },
@@ -738,8 +790,67 @@
     "folders": 0,
     "files": 0
   },
+  "providerProbes": [
+    {
+      "id": "anilist",
+      "label": "AniList（漫画 / 动画）",
+      "ms": 511,
+      "count": 8,
+      "top": [
+        "One Piece / ONE PIECE / 1997 / Eiichirou Oda",
+        "Wan Piece / わんぴいす / 2015 / Quzilax",
+        "One Piece Party / ワンピース パーティー / 2014 / Eiichirou Oda"
+      ],
+      "cover": "有"
+    },
+    {
+      "id": "anilist",
+      "label": "AniList（漫画 / 动画）",
+      "ms": 933,
+      "count": 8,
+      "top": [
+        "Attack on Titan / 進撃の巨人 / 2013 / Yuu Kobayashi",
+        "Attack on Titan Final Season / 進撃の巨人 The Final Season / 2020 / Mike McFarland",
+        "Attack on Titan Season 2 / 進撃の巨人 Season２ / 2017 / Mike McFarland"
+      ],
+      "cover": "有"
+    },
+    {
+      "id": "anilist",
+      "label": "AniList（漫画 / 动画）",
+      "ms": 839,
+      "count": 1,
+      "top": [
+        "Renbo Seikatsu: Mama no Bakunyuu wa Boku no Mono / 恋母性活～ママの爆乳は僕のもの～ / 2015 / Rara8"
+      ],
+      "cover": "有"
+    },
+    {
+      "id": "openlibrary",
+      "label": "Open Library（小说）",
+      "ms": 923,
+      "count": 4,
+      "top": [
+        "活着 / 活着 / 2012 / 余华",
+        "活着 / 活着 / 1998 / 余华",
+        "活着 / 活着 / 2011 / Lei Tian"
+      ],
+      "cover": "有"
+    },
+    {
+      "id": "musicbrainz",
+      "label": "MusicBrainz（音乐）",
+      "ms": 851,
+      "count": 2,
+      "top": [
+        "1989 (Taylor’s Version) / 1989 (Taylor’s Version) / 2023 / Taylor Swift",
+        "1989 (Taylor's version) (The Violin Covers) / 1989 (Taylor's version) (The Violin Covers) / 2023 / Ana Done"
+      ],
+      "cover": "有"
+    }
+  ],
   "queryCache": {
-    "firstMs": 1,
+    "firstMs": 2,
     "secondMs": 0,
     "sameTotal": true,
     "size": 1,
@@ -749,15 +860,15 @@
   "queryPlans": {
     "分类列表": [
       "SEARCH r USING INDEX idx_res_kind_sort (kind=?)",
-      "SEARCH l USING INTEGER PRIMARY KEY (rowid=?)"
+      "SCAN l"
     ],
     "最近使用": [
+      "SCAN l",
       "SEARCH r USING INDEX idx_res_opened (open_count>?)",
-      "SEARCH l USING INTEGER PRIMARY KEY (rowid=?)",
       "USE TEMP B-TREE FOR ORDER BY"
     ]
   },
-  "dbSizeMB": 0.4,
+  "dbSizeMB": 0.5,
   "metadataRows": [
     {
       "seriesKey": "music:taylorswift:1989",
@@ -985,17 +1096,17 @@
       "homeCards": 0,
       "drawer": false,
       "drawerTitle": "",
-      "tiles": 2,
+      "tiles": 63,
       "hint": "提示：单击选择资源查看信息，双击用系统默认程序打开。",
-      "version": "Version : 1.8.0",
+      "version": "Version : 1.9.0",
       "api": true,
       "toasts": []
     }
   },
   "interactProbe": {
     "drawerOpened": true,
-    "drawerTitle": "01. Welcome To New York (Taylor's Version)",
-    "drawerRows": 15,
+    "drawerTitle": "《我的治愈系游戏》",
+    "drawerRows": 8,
     "drawerActions": 7,
     "moreItems": [
       "立即扫描资源库",
@@ -1006,45 +1117,28 @@
       "设置…"
     ],
     "drawerClosed": true,
-    "gridTiles": 2,
+    "gridTiles": 63,
     "virtualGrid": {
       "virtualClass": true,
-      "total": "共 383 项 · 虚拟滚动（已渲染 2 个）",
-      "beforeCount": 2,
-      "afterCount": 2,
+      "total": "共 383 项 · 虚拟滚动（已渲染 72 个）",
+      "beforeCount": 63,
+      "afterCount": 72,
       "beforeFirst": "01. Welcome To New York (Taylor's Version)",
-      "afterFirst": "01. Welcome To New York (Taylor's Version)"
+      "afterFirst": "《我的治愈系游戏》"
     },
     "drawerInfo": [
-      "艺术家=Taylor Swift",
-      "专辑=1989 (Taylor's Version)",
-      "时长=3:33",
-      "格式=FLAC",
-      "码率=1872 kbps",
-      "本地文件=01. Welcome To New York (Taylor's Version).flac",
-      "文件大小=47.4 MB",
-      "修改时间=2023-10-27 22:21",
+      "格式=TXT",
+      "本地文件=《我的治愈系游戏》.txt",
+      "文件大小=9.82 MB",
+      "修改时间=2024-02-27 23:01",
       "加入索引=2026-09-30 23:30",
-      "文件路径=G:\\tu\\YX的小屋\\音乐\\01. Welcome To New York (Taylor's Version).flac",
-      "作品=1989 (Taylor’s Version)",
-      "作者=Taylor Swift",
-      "原名=1989 (Taylor’s Version)",
-      "年份=2023",
-      "元数据=已匹配 · musicbrainz"
+      "文件路径=G:\\tu\\YX的小屋\\小说\\《我的治愈系游戏》.txt",
+      "作品=我的治愈系游戏",
+      "元数据=本地信息 · local"
     ],
     "posterBox": {
       "w": 343,
-      "h": 343
-    },
-    "posterImg": {
-      "w": 342,
-      "h": 342,
-      "natural": "800x800"
-    },
-    "cardImg": {
-      "w": 761,
-      "h": 761,
-      "natural": "256x256"
+      "h": 420
     },
     "movieViewActive": true,
     "workDrawerRows": [
@@ -1078,4 +1172,3 @@
   "apiKeyInMainAfterProbe": false
 }
 ===== END =====
-SMOKE_REPORT_FILE G:\tu\YX的小屋\ToolBox\smoke-report.json

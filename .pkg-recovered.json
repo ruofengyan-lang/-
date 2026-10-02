@@ -1,0 +1,14 @@
+﻿偏移/大小: {"size":281,"offset":"1093580","integrity":{"algorithm":"SHA256","hash":"a98766280dce0923956ee3d394c3ae269ee65ab6fa5cead8d69188bf8baa2d9f","blockSize":4194304,"blocks":["a98766280dce0923956ee3d394c3ae269ee65ab6fa5cead8d69188bf8baa2d9f"]}}
+l>
+{
+  "name": "toolbox",
+  "productName": "ToolBox",
+  "version": "1.6.0",
+  "description": "个人本地数字资源中心（绿色便携版）",
+  "author": "YX Studio",
+  "license": "MIT",
+  "private": true,
+  "main": "./out/main/index.js",
+  "engines": {
+    "node": ">=20"
+  

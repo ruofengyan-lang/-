@@ -1,0 +1,48 @@
+﻿
+>   "providerProbes": [
+      {
+        "id": "anilist",
+        "label": "AniList（漫画 / 动画）",
+        "ms": 714,
+        "count": 8,
+        "top": [
+          "One Piece / ONE PIECE / 1997 / Eiichirou Oda",
+          "Wan Piece / わんぴいす / 2015 / Quzilax",
+          "One Piece Party / ワンピース パーティー / 2014 / Eiichirou Oda"
+        ],
+        "cover": "有"
+      },
+      {
+        "id": "anilist",
+        "label": "AniList（漫画 / 动画）",
+        "ms": 584,
+        "count": 8,
+        "top": [
+          "Attack on Titan / 進撃の巨人 / 2013 / Yuu Kobayashi",
+          "Attack on Titan Final Season / 進撃の巨人 The Final Season / 2020 / Mike McFarland",
+          "Attack on Titan Season 2 / 進撃の巨人 Season２ / 2017 / Mike McFarland"
+        ],
+        "cover": "有"
+      },
+      {
+        "id": "openlibrary",
+        "ms": 20010,
+        "error": "请求超时：网络不可达或需要代理"
+      },
+      {
+        "id": "musicbrainz",
+        "label": "MusicBrainz（音乐）",
+        "ms": 536,
+        "count": 2,
+        "top": [
+          "1989 (Taylor’s Version) / 1989 (Taylor’s Version) / 2023 / Taylor Swift",
+          "1989 (Taylor's version) (The Violin Covers) / 1989 (Taylor's version) (The Violin Covers) / 2023 / Ana Done"
+        ],
+        "cover": "有"
+      }
+    ],
+    "metadataRows": [
+      {
+        "seriesKey": "comic:恋母性活子豚の館",
+
+

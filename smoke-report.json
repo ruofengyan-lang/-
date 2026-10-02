@@ -1,6 +1,6 @@
 {
   "info": {
-    "version": "1.2.1",
+    "version": "1.9.0",
     "appRoot": "G:\\tu\\YX的小屋",
     "configDir": "G:\\tu\\YX的小屋\\config",
     "dataDir": "G:\\tu\\YX的小屋\\data",
@@ -36,7 +36,15 @@
       "computeHash": true,
       "hashMaxSizeMB": 2048
     },
-    "lastView": "all"
+    "lastView": "all",
+    "metadata": {
+      "tmdbApiKey": "",
+      "online": true,
+      "proxy": "",
+      "tmdbApiBase": "https://api.themoviedb.org/3",
+      "tmdbImageBase": "https://image.tmdb.org/t/p",
+      "imageCacheMB": 512
+    }
   },
   "libraries": [
     {
@@ -46,10 +54,62 @@
       "enabled": true,
       "maxDepth": 0,
       "createdAt": 1790782248099,
-      "lastScanned": 1790866060755,
+      "lastScanned": 1790903403089,
       "resourceCount": 383
     }
   ],
+  "scan": {
+    "ms": 278,
+    "progress": {
+      "libraryId": 1,
+      "libraryPath": "G:\\tu\\YX的小屋",
+      "phase": "done",
+      "scanned": 383,
+      "total": 383,
+      "current": "",
+      "counts": [
+        {
+          "kind": "archive",
+          "count": 7
+        },
+        {
+          "kind": "wallpaper",
+          "count": 281
+        },
+        {
+          "kind": "installer",
+          "count": 9
+        },
+        {
+          "kind": "novel",
+          "count": 16
+        },
+        {
+          "kind": "comic",
+          "count": 2
+        },
+        {
+          "kind": "image",
+          "count": 1
+        },
+        {
+          "kind": "other",
+          "count": 1
+        },
+        {
+          "kind": "movie",
+          "count": 2
+        },
+        {
+          "kind": "music",
+          "count": 64
+        }
+      ],
+      "startedAt": 1790903964306,
+      "finishedAt": 1790903964579,
+      "error": ""
+    }
+  },
   "stats": {
     "total": 383,
     "kinds": [
@@ -92,7 +152,7 @@
     ],
     "favorites": 0,
     "recentAdded": 383,
-    "recentUsed": 1,
+    "recentUsed": 2,
     "duplicates": 0,
     "libraries": 1,
     "folderCount": 8,
@@ -250,8 +310,8 @@
         "height": 0,
         "durationMs": 212600,
         "cardLine": "Taylor Swift · 1989 (Taylor's Version) · 3:33",
-        "seriesKey": "",
-        "seriesTitle": "",
+        "seriesKey": "music:taylorswift:1989",
+        "seriesTitle": "1989 (Taylor's Version)",
         "volume": 0
       },
       {
@@ -275,9 +335,9 @@
         "height": 0,
         "durationMs": 292075,
         "cardLine": "告五人 · 我肯定在几百年前就说过爱你 · 4:52",
-        "seriesKey": "",
-        "seriesTitle": "",
-        "volume": 0
+        "seriesKey": "music:告五人:我肯定在几百年前就说过爱你",
+        "seriesTitle": "我肯定在几百年前就说过爱你",
+        "volume": 1
       },
       {
         "id": 320,
@@ -300,9 +360,9 @@
         "height": 0,
         "durationMs": 236253,
         "cardLine": "周杰伦 · 范特西 · 3:56",
-        "seriesKey": "",
-        "seriesTitle": "",
-        "volume": 0
+        "seriesKey": "music:周杰伦:范特西",
+        "seriesTitle": "范特西",
+        "volume": 1
       }
     ]
   },
@@ -447,11 +507,9 @@
   },
   "comicSeries": [
     {
-      "key": "comic:恋母性活子豚の館",
       "title": "恋母性活 - 子豚の館",
       "volumes": 2,
-      "numbered": 0,
-      "cover": "G:\\tu\\YX的小屋\\漫画\\子豚の館 (らら8)\\恋母性活\\恋母性活 - 子豚の館 (らら8).epub"
+      "cover": "恋母性活 - 子豚の館 (らら8).epub"
     }
   ],
   "comicSeriesDetail": {
@@ -473,12 +531,16 @@
     "融合2.8.1：诸神射击、塔防更新.zip"
   ],
   "metadataStats": {
-    "total": 19,
+    "total": 78,
     "byStatus": {
-      "local": 19
+      "failed": 23,
+      "local": 16,
+      "matched": 26,
+      "pending": 13
     },
     "bySource": {
-      "local": 19
+      "local": 52,
+      "musicbrainz": 26
     },
     "providers": [
       {
@@ -490,7 +552,7 @@
           "anime"
         ],
         "requiresNetwork": true,
-        "implemented": false
+        "implemented": true
       },
       {
         "id": "musicbrainz",
@@ -499,16 +561,7 @@
           "music"
         ],
         "requiresNetwork": true,
-        "implemented": false
-      },
-      {
-        "id": "openlibrary",
-        "label": "Open Library（小说）",
-        "kinds": [
-          "novel"
-        ],
-        "requiresNetwork": true,
-        "implemented": false
+        "implemented": true
       },
       {
         "id": "anilist",
@@ -518,7 +571,16 @@
           "anime"
         ],
         "requiresNetwork": true,
-        "implemented": false
+        "implemented": true
+      },
+      {
+        "id": "openlibrary",
+        "label": "Open Library（小说）",
+        "kinds": [
+          "novel"
+        ],
+        "requiresNetwork": true,
+        "implemented": true
       }
     ]
   },
@@ -533,7 +595,7 @@
           "anime"
         ],
         "requiresNetwork": true,
-        "implemented": false
+        "implemented": true
       },
       {
         "id": "musicbrainz",
@@ -542,16 +604,7 @@
           "music"
         ],
         "requiresNetwork": true,
-        "implemented": false
-      },
-      {
-        "id": "openlibrary",
-        "label": "Open Library（小说）",
-        "kinds": [
-          "novel"
-        ],
-        "requiresNetwork": true,
-        "implemented": false
+        "implemented": true
       },
       {
         "id": "anilist",
@@ -561,19 +614,29 @@
           "anime"
         ],
         "requiresNetwork": true,
-        "implemented": false
+        "implemented": true
+      },
+      {
+        "id": "openlibrary",
+        "label": "Open Library（小说）",
+        "kinds": [
+          "novel"
+        ],
+        "requiresNetwork": true,
+        "implemented": true
       }
     ],
-    "implemented": 0,
-    "planned": 4
+    "implemented": 4,
+    "planned": 0
   },
   "providerPipeline": {
-    "seriesKey": "comic:恋母性活子豚の館",
-    "providerCount": 1,
+    "seriesKey": "smoke:provider-pipeline",
+    "providerCount": 2,
     "status": "matched",
     "confidence": 1,
+    "ok": true,
     "writtenSource": "smoke-only",
-    "writtenTitle": "恋母性活 - 子豚の館",
+    "writtenTitle": "Pipeline Test Title",
     "writtenOriginalTitle": "SMOKE ORIGINAL TITLE",
     "writtenAuthor": "自检作者",
     "writtenOverview": "自检返回的简介",
@@ -582,59 +645,272 @@
       "自检"
     ]
   },
-  "providerPipelineRestored": true,
+  "providerPipelineCleaned": true,
+  "matchingCenter": {
+    "total": 78,
+    "byStatus": {
+      "pending": 13,
+      "failed": 23,
+      "local": 16,
+      "matched": 26
+    },
+    "rowsWithCandidates": 42,
+    "sample": [
+      {
+        "title": "一匹 (宠物再生版)",
+        "kind": "music",
+        "status": "pending",
+        "source": "local",
+        "candidates": 1
+      },
+      {
+        "title": "匆匆那年",
+        "kind": "music",
+        "status": "pending",
+        "source": "local",
+        "candidates": 2
+      },
+      {
+        "title": "可能",
+        "kind": "music",
+        "status": "pending",
+        "source": "local",
+        "candidates": 6
+      },
+      {
+        "title": "忘不了你",
+        "kind": "music",
+        "status": "pending",
+        "source": "local",
+        "candidates": 2
+      }
+    ]
+  },
+  "thumbSizes": {
+    "name": "2 (117).jpg",
+    "card": "256x154 RGB · 56KB",
+    "detail": "1024x614 RGB · 629KB",
+    "cardPath": "thumbnails\\card\\d4bd5eac2bf3659287f16c41a072f9d3e6d830aa.png",
+    "detailPath": "thumbnails\\detail\\d4bd5eac2bf3659287f16c41a072f9d3e6d830aa.png"
+  },
+  "thumbCache": {
+    "files": 407,
+    "bytes": 27174379,
+    "bySize": {
+      "card": {
+        "files": 338,
+        "bytes": 22529854
+      },
+      "detail": {
+        "files": 6,
+        "bytes": 3854785
+      },
+      "icon": {
+        "files": 63,
+        "bytes": 789740
+      }
+    }
+  },
+  "nameParsing": [
+    {
+      "输入": "《异常收藏家》作者：捕梦者.txt",
+      "作品名": "异常收藏家",
+      "卷号": 0,
+      "作者": "捕梦者",
+      "页码": ""
+    },
+    {
+      "输入": "《明克街13号》（精校版全书） 作者：纯洁滴小龙.txt",
+      "作品名": "明克街13号",
+      "卷号": 0,
+      "作者": "纯洁滴小龙",
+      "页码": ""
+    },
+    {
+      "输入": "【全本】斗破苍穹 作者：天蚕土豆 www.xxsbiquge.com.txt",
+      "作品名": "斗破苍穹",
+      "卷号": 0,
+      "作者": "天蚕土豆",
+      "页码": ""
+    },
+    {
+      "输入": "[汉化组] 海贼王 第001卷 [1080p].cbz",
+      "作品名": "海贼王",
+      "卷号": 1,
+      "作者": "",
+      "页码": ""
+    },
+    {
+      "输入": "进击的巨人 Vol.12.cbz",
+      "作品名": "进击的巨人",
+      "卷号": 12,
+      "作者": "",
+      "页码": 12
+    },
+    {
+      "输入": "某漫画 03.pdf",
+      "作品名": "某漫画",
+      "卷号": 3,
+      "作者": "",
+      "页码": 3
+    },
+    {
+      "输入": "one piece 001.zip",
+      "作品名": "one piece",
+      "卷号": 1,
+      "作者": "",
+      "页码": 1
+    },
+    {
+      "输入": "漫画\\第01卷\\001.jpg",
+      "作品名": "001",
+      "卷号": 1,
+      "作者": "",
+      "页码": 1
+    },
+    {
+      "输入": "p07.webp",
+      "作品名": "p07",
+      "卷号": 0,
+      "作者": "",
+      "页码": 7
+    }
+  ],
+  "comicAggregate": {
+    "folders": 0,
+    "files": 0
+  },
+  "providerProbes": [
+    {
+      "id": "anilist",
+      "label": "AniList（漫画 / 动画）",
+      "ms": 511,
+      "count": 8,
+      "top": [
+        "One Piece / ONE PIECE / 1997 / Eiichirou Oda",
+        "Wan Piece / わんぴいす / 2015 / Quzilax",
+        "One Piece Party / ワンピース パーティー / 2014 / Eiichirou Oda"
+      ],
+      "cover": "有"
+    },
+    {
+      "id": "anilist",
+      "label": "AniList（漫画 / 动画）",
+      "ms": 933,
+      "count": 8,
+      "top": [
+        "Attack on Titan / 進撃の巨人 / 2013 / Yuu Kobayashi",
+        "Attack on Titan Final Season / 進撃の巨人 The Final Season / 2020 / Mike McFarland",
+        "Attack on Titan Season 2 / 進撃の巨人 Season２ / 2017 / Mike McFarland"
+      ],
+      "cover": "有"
+    },
+    {
+      "id": "anilist",
+      "label": "AniList（漫画 / 动画）",
+      "ms": 839,
+      "count": 1,
+      "top": [
+        "Renbo Seikatsu: Mama no Bakunyuu wa Boku no Mono / 恋母性活～ママの爆乳は僕のもの～ / 2015 / Rara8"
+      ],
+      "cover": "有"
+    },
+    {
+      "id": "openlibrary",
+      "label": "Open Library（小说）",
+      "ms": 923,
+      "count": 4,
+      "top": [
+        "活着 / 活着 / 2012 / 余华",
+        "活着 / 活着 / 1998 / 余华",
+        "活着 / 活着 / 2011 / Lei Tian"
+      ],
+      "cover": "有"
+    },
+    {
+      "id": "musicbrainz",
+      "label": "MusicBrainz（音乐）",
+      "ms": 851,
+      "count": 2,
+      "top": [
+        "1989 (Taylor’s Version) / 1989 (Taylor’s Version) / 2023 / Taylor Swift",
+        "1989 (Taylor's version) (The Violin Covers) / 1989 (Taylor's version) (The Violin Covers) / 2023 / Ana Done"
+      ],
+      "cover": "有"
+    }
+  ],
+  "queryCache": {
+    "firstMs": 2,
+    "secondMs": 0,
+    "sameTotal": true,
+    "size": 1,
+    "hits": 1,
+    "misses": 1
+  },
+  "queryPlans": {
+    "分类列表": [
+      "SEARCH r USING INDEX idx_res_kind_sort (kind=?)",
+      "SCAN l"
+    ],
+    "最近使用": [
+      "SCAN l",
+      "SEARCH r USING INDEX idx_res_opened (open_count>?)",
+      "USE TEMP B-TREE FOR ORDER BY"
+    ]
+  },
+  "dbSizeMB": 0.5,
   "metadataRows": [
+    {
+      "seriesKey": "music:taylorswift:1989",
+      "title": "1989 (Taylor’s Version)",
+      "author": "Taylor Swift",
+      "status": "matched",
+      "source": "musicbrainz",
+      "confidence": 1
+    },
     {
       "seriesKey": "comic:恋母性活子豚の館",
       "title": "恋母性活",
       "author": "子豚の館 (らら8)",
-      "status": "local",
+      "status": "pending",
+      "source": "local",
+      "confidence": 0.706
+    },
+    {
+      "seriesKey": "music:林俊杰:100天",
+      "title": "100天",
+      "author": "林俊傑",
+      "status": "matched",
+      "source": "musicbrainz",
+      "confidence": 0.962
+    },
+    {
+      "seriesKey": "movie:僵尸世界大战",
+      "title": "僵尸世界大战",
+      "author": "",
+      "status": "failed",
       "source": "local",
       "confidence": 0
     },
     {
-      "seriesKey": "novel:明克街13号",
-      "title": "明克街13号",
-      "author": "纯洁滴小龙",
-      "status": "local",
-      "source": "local",
-      "confidence": 0
-    },
-    {
-      "seriesKey": "novel:神秘复苏",
-      "title": "神秘复苏",
-      "author": "佛前献花",
-      "status": "local",
-      "source": "local",
-      "confidence": 0
-    },
-    {
-      "seriesKey": "novel:异常收藏家",
-      "title": "异常收藏家",
-      "author": "捕梦者",
-      "status": "local",
-      "source": "local",
-      "confidence": 0
-    },
-    {
-      "seriesKey": "novel:炼狱艺术家",
-      "title": "炼狱艺术家",
+      "seriesKey": "novel:黑暗血时代",
+      "title": "黑暗血时代",
       "author": "",
       "status": "local",
       "source": "local",
       "confidence": 0
     },
     {
-      "seriesKey": "novel:我只想安静地抄书啊",
-      "title": "我只想安静地抄书啊",
+      "seriesKey": "novel:黎明之剑",
+      "title": "黎明之剑",
       "author": "",
       "status": "local",
       "source": "local",
       "confidence": 0
     },
     {
-      "seriesKey": "novel:文化入侵异世界",
-      "title": "文化入侵异世界",
+      "seriesKey": "novel:镇妖博物馆",
+      "title": "镇妖博物馆",
       "author": "",
       "status": "local",
       "source": "local",
@@ -649,32 +925,32 @@
       "confidence": 0
     },
     {
-      "seriesKey": "novel:我有一座恐怖屋",
-      "title": "我有一座恐怖屋",
+      "seriesKey": "novel:突然成仙了怎么办",
+      "title": "突然成仙了怎么办",
       "author": "",
       "status": "local",
       "source": "local",
       "confidence": 0
     },
     {
-      "seriesKey": "novel:从红月开始",
-      "title": "从红月开始",
+      "seriesKey": "novel:神秘复苏",
+      "title": "神秘复苏",
+      "author": "佛前献花",
+      "status": "local",
+      "source": "local",
+      "confidence": 0
+    },
+    {
+      "seriesKey": "novel:文化入侵异世界",
+      "title": "文化入侵异世界",
       "author": "",
       "status": "local",
       "source": "local",
       "confidence": 0
     },
     {
-      "seriesKey": "novel:我的治愈系游戏",
-      "title": "我的治愈系游戏",
-      "author": "",
-      "status": "local",
-      "source": "local",
-      "confidence": 0
-    },
-    {
-      "seriesKey": "novel:我真没想出名啊",
-      "title": "我真没想出名啊",
+      "seriesKey": "novel:炼狱艺术家",
+      "title": "炼狱艺术家",
       "author": "",
       "status": "local",
       "source": "local",
@@ -774,13 +1050,13 @@
     "name": "Kingdoms.and.Castles.AI.Kingdoms.7z",
     "generated": true,
     "resolution": "256x256 RGBA",
-    "bytes": 9799
+    "bytes": 9774
   },
   "movieImageTest": {
     "name": "《僵尸世界大战》.mp4",
     "generated": true,
-    "resolution": "768x432 RGBA",
-    "bytes": 122411
+    "resolution": "256x144 RGBA",
+    "bytes": 22950
   },
   "renderer": {
     "loaded": true,
@@ -810,52 +1086,49 @@
       "homeCards": 0,
       "drawer": false,
       "drawerTitle": "",
-      "tiles": 120,
+      "tiles": 63,
       "hint": "提示：单击选择资源查看信息，双击用系统默认程序打开。",
-      "version": "Version : 1.2.1",
+      "version": "Version : 1.9.0",
       "api": true,
       "toasts": []
     }
   },
   "interactProbe": {
     "drawerOpened": true,
-    "drawerTitle": "01. Welcome To New York (Taylor's Version)",
-    "drawerRows": 10,
+    "drawerTitle": "《我的治愈系游戏》",
+    "drawerRows": 8,
     "drawerActions": 7,
     "moreItems": [
       "立即扫描资源库",
       "资源库管理…",
+      "元数据匹配中心…",
       "更换工具箱背景…",
       "打开索引数据目录",
       "设置…"
     ],
     "drawerClosed": true,
-    "gridTiles": 120,
+    "gridTiles": 63,
+    "virtualGrid": {
+      "virtualClass": true,
+      "total": "共 383 项 · 虚拟滚动（已渲染 72 个）",
+      "beforeCount": 63,
+      "afterCount": 72,
+      "beforeFirst": "01. Welcome To New York (Taylor's Version)",
+      "afterFirst": "《我的治愈系游戏》"
+    },
     "drawerInfo": [
-      "艺术家=Taylor Swift",
-      "专辑=1989 (Taylor's Version)",
-      "时长=3:33",
-      "格式=FLAC",
-      "码率=1872 kbps",
-      "本地文件=01. Welcome To New York (Taylor's Version).flac",
-      "文件大小=47.4 MB",
-      "修改时间=2023-10-27 22:21",
+      "格式=TXT",
+      "本地文件=《我的治愈系游戏》.txt",
+      "文件大小=9.82 MB",
+      "修改时间=2024-02-27 23:01",
       "加入索引=2026-09-30 23:30",
-      "文件路径=G:\\tu\\YX的小屋\\音乐\\01. Welcome To New York (Taylor's Version).flac"
+      "文件路径=G:\\tu\\YX的小屋\\小说\\《我的治愈系游戏》.txt",
+      "作品=我的治愈系游戏",
+      "元数据=本地信息 · local"
     ],
     "posterBox": {
       "w": 343,
-      "h": 343
-    },
-    "posterImg": {
-      "w": 342,
-      "h": 342,
-      "natural": "512x512"
-    },
-    "cardImg": {
-      "w": 180,
-      "h": 180,
-      "natural": "512x512"
+      "h": 420
     },
     "movieViewActive": true,
     "workDrawerRows": [
@@ -868,7 +1141,7 @@
       "加入索引=2026-09-30 23:30",
       "文件路径=G:\\tu\\YX的小屋\\电影\\僵尸世界大战\\《僵尸世界大战》.mp4",
       "作品=僵尸世界大战",
-      "元数据=本地信息 · local"
+      "元数据=匹配失败 · local"
     ],
     "workDrawerSections": [
       "本地信息",
@@ -876,5 +1149,15 @@
       "简介",
       "分类"
     ]
-  }
+  },
+  "apiKeyProbe": {
+    "beforeHasKey": false,
+    "beforeValueLeaked": false,
+    "afterHasKey": true,
+    "afterValueLeaked": false,
+    "clearedHasKey": false,
+    "finalHasKey": false,
+    "finalValueLeaked": false
+  },
+  "apiKeyInMainAfterProbe": false
 }
